@@ -1,0 +1,24 @@
+<div class="header">
+    <!-- Navbar -->
+    <nav class="navbar-default navbar navbar-expand-lg">
+      <a
+        id="nav-toggle"
+        [ngStyle]="{ cursor: 'pointer' }"
+        (click)="toggleSideBar()"
+        ><i class="fa-solid fa-bars"></i
+      ></a>
+      <div class="ml-lg-3 d-none d-md-none d-lg-block">
+      </div>
+      <!-- Navbar nav -->
+      <ul class="navbar-nav navbar-right-wrap ml-auto d-flex nav-top-wrap">
+        <!-- List group item -->
+        <li class="nav-item ml-auto d-flex align-items-center ">
+          <h4 class="mx-5 mt-2">Bienvenue, <span class="text-primary">{{fullName}}</span></h4>
+          <a class="btn btn-white shadow-sm mr-1" (click)="logout()">
+            <i class="fe fe-power mr-2"></i>Déconnexion
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
