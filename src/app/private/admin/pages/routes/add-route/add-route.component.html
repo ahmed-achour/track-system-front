@@ -1,0 +1,123 @@
+<div id="db-wrapper">
+  <app-side-bar></app-side-bar>
+  <div id="page-content">
+    <app-nav-bar></app-nav-bar>
+    <div class="container-fluid p-4">
+      <!-- CONTENT-->
+      <div id="layoutSidenav_content">
+        <main>
+          <ngx-spinner
+            bdColor="rgba(51,51,51,0.8)"
+            size="medium"
+            color="#fff"
+            type="ball-scale-multiple"
+          >
+            <p style="font-size: 20px; color: white">Loading...</p>
+          </ngx-spinner>
+          <div class="container-fluid px-4">
+            <h1 class="mt-4">Ajouter un programme</h1>
+
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-12">
+                <!-- Card -->
+                <div class="card mb-4">
+                  <!-- Card header -->
+                  <div class="card-header">
+                    <h4 class="mb-0">Ajouter un programme</h4>
+                  </div>
+                  <!-- Card body -->
+                  <div class="card-body">
+                    <form
+                      class="row"
+                      [formGroup]="addRouteForm"
+                      (ngSubmit)="addRoute()"
+                    >
+                      <!--serie-->
+                      <div class="form-group col-12 col-md-12 col-lg-6">
+                        <label class="form-label text-primary mr-2"
+                          >Véhicule:</label
+                        >
+                        <select
+                          id="serie"
+                          class="form-control mr-4"
+                          formControlName="serie"
+                          (change)="changeSerie($event)"
+                        >
+                          <option disabled value="">
+                            Sélectionner le chauffeur
+                          </option>
+
+                          <option
+                            *ngFor="let truck of truckList"
+                            value="{{ truck._id }}"
+                          >
+                            {{ truck.serie }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-12 col-md-12 col-lg-6">
+                        <label class="form-label text-primary mr-2"
+                          >Chauffeur:</label
+                        >
+                        <select
+                          id="driver"
+                          class="form-control mr-4"
+                          formControlName="driver"
+                          (change)="changeDriver($event)"
+                        >
+                          <option disabled value="">
+                            Sélectionner le chauffeur
+                          </option>
+
+                          <option
+                            *ngFor="let driver of driverList"
+                            value="{{ driver._id }}"
+                          >
+                            {{ driver.fullName }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-12 col-md-12 col-lg-6">
+                        <label for="startingHour" class="form-label"
+                          >Heure de départ<span class="text-danger">*</span>
+                        </label>
+                        <input
+                          class="form-control"
+                          id="startingHour"
+                          placeholder="Enter le nom Complet..."
+                          type="time" min="09:00" max="18:00" 
+                          formControlName="startingHour"
+                          required
+                        />
+                        <div
+                          *ngIf="startingHour?.touched && startingHour?.invalid"
+                        >
+                          <small
+                            *ngIf="startingHour?.errors?.['required']"
+                            class="text-danger"
+                            >Ce champ est obligatoire<br
+                          /></small>
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-12 col-lg-12">
+                        <button
+                          class="btn btn-info mx-2"
+                          [disabled]="addRouteForm.invalid"
+                        >
+                          Ajouter
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>

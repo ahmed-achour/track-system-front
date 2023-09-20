@@ -26,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ToastrModule.forRoot(),
     NgbModule,
 
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

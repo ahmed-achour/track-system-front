@@ -30,123 +30,173 @@
                     [formGroup]="updateAdminForm"
                     (ngSubmit)="updateAdmin()"
                   >
-                       <!--firstName-->
-                       <div class="form-group col-12 col-md-12 col-lg-6">
-                        <label for="firstName" class="form-label"
-                          >Nom <span class="text-danger">*</span>
-                        </label>
-                        <input
-                          class="form-control"
-                          id="firstName"
-                          placeholder="Entrer le nom ..."
-                          type="text"
-                          formControlName="firstName"
-                          required
-                        />
-                        <div *ngIf="firstName?.touched && firstName?.invalid">
-                          <small
-                            *ngIf="firstName?.errors?.['required']"
-                            class="text-danger"
-                            >Le nom  est obligatoire<br
-                          /></small>
+                        <!--firstName-->
+                        <div class="form-group col-12 col-md-12 col-lg-6">
+                          <label for="firstName" class="form-label"
+                            >Nom <span class="text-danger">*</span>
+                          </label>
+                          <input
+                            class="form-control"
+                            id="firstName"
+                            placeholder="Entrer le nom ..."
+                            type="text"
+                            formControlName="firstName"
+                            required
+                          />
+                          <div *ngIf="firstName?.touched && firstName?.invalid">
+                            <small
+                              *ngIf="firstName?.errors?.['required']"
+                              class="text-danger"
+                              >Le nom  est obligatoire<br
+                            /></small>
+                          </div>
                         </div>
-                      </div>
-
-                      <!--lastName-->
-                      <div class="form-group col-12 col-md-12 col-lg-6">
-                        <label for="lastName" class="form-label"
-                          >Prénom <span class="text-danger">*</span>
-                        </label>
-                        <input
-                          class="form-control"
-                          id="lastName"
-                          placeholder="Entrer le Prénom ..."
-                          type="text"
-                          formControlName="lastName"
-                          required
-                        />
-                        <div *ngIf="lastName?.touched && lastName?.invalid">
-                          <small
-                            *ngIf="lastName?.errors?.['required']"
-                            class="text-danger"
-                            >Le prénom est obligatoire<br
-                          /></small>
+  
+                        <!--lastName-->
+                        <div class="form-group col-12 col-md-12 col-lg-6">
+                          <label for="lastName" class="form-label"
+                            >Prénom <span class="text-danger">*</span>
+                          </label>
+                          <input
+                            class="form-control"
+                            id="lastName"
+                            placeholder="Entrer le Prénom ..."
+                            type="text"
+                            formControlName="lastName"
+                            required
+                          />
+                          <div *ngIf="lastName?.touched && lastName?.invalid">
+                            <small
+                              *ngIf="lastName?.errors?.['required']"
+                              class="text-danger"
+                              >Le prénom est obligatoire<br
+                            /></small>
+                          </div>
                         </div>
-                      </div>
-
-                      <!--email-->
-                      <div class="form-group col-12 col-md-12 col-lg-6">
-                        <label for="email" class="form-label"
-                          >Address mail<span class="text-danger">*</span>
-                        </label>
-                        <input
-                          class="form-control"
-                          id="email"
-                          placeholder="E-mail..."
-                          type="text"
-                          formControlName="email"
-                          required
-                        />
-                        <div *ngIf="email?.touched && email?.invalid">
-                          <small
-                            *ngIf="email?.errors?.['required']"
-                            class="text-danger"
-                            >L'email est obligatoire<br
-                          /></small>
-                          <small
-                            *ngIf="email?.errors?.['pattern']"
-                            class="text-danger"
-                            >L'email est invalide<br
-                          /></small>
+  
+                        <!--email-->
+                        <div class="form-group col-12 col-md-12 col-lg-6">
+                          <label for="email" class="form-label"
+                            >Address mail<span class="text-danger">*</span>
+                          </label>
+                          <input
+                            class="form-control"
+                            id="email"
+                            placeholder="E-mail..."
+                            type="text"
+                            formControlName="email"
+                            required
+                          />
+                          <div *ngIf="email?.touched && email?.invalid">
+                            <small
+                              *ngIf="email?.errors?.['required']"
+                              class="text-danger"
+                              >L'email est obligatoire<br
+                            /></small>
+                            <small
+                              *ngIf="email?.errors?.['pattern']"
+                              class="text-danger"
+                              >L'email est invalide<br
+                            /></small>
+                          </div>
                         </div>
+                      
+  
+                     <!--address-->
+                     <div class="form-group col-12 col-md-12 col-lg-6">
+                      <label for="address" class="form-label"
+                        >Adresse <span class="text-danger">*</span>
+                      </label>
+                      <input
+                        class="form-control"
+                        id="address"
+                        placeholder="Entrer l'adresse ..."
+                        type="text"
+                        formControlName="address"
+                        required
+                      />
+                      <div *ngIf="address?.touched && address?.invalid">
+                        <small
+                          *ngIf="address?.errors?.['required']"
+                          class="text-danger"
+                          >L'adresse est obligatoire<br
+                        /></small>
                       </div>
-                      <div class="form-group col-12 col-md-12 col-lg-6">
-                        <label for="country" class="form-label"
-                          >Pays<span class="text-danger">*</span>
-                        </label>
-                      <select (change)="changeCountry($event)" class="form-control" name="country" id="country" formControlName="country">
-                        <option value="" disabled  selected>Selectionner votre pays</option>
-                        <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
-                   </select>
-                  </div>
-                      <!--password-->
-                      <div class="form-group col-12 col-md-12 col-lg-6">
-                        <label for="password" class="form-label"
-                          >Mot de passe<span class="text-danger">*</span>
-                        </label>
-                        <input
-                          class="form-control"
-                          id="password"
-                          placeholder="Entrer le mot de passe..."
-                          type="password"
-                          formControlName="password"
-                        />
-                        
+                    </div>
+                    <!--phone-->
+                    <div class="form-group col-12 col-md-12 col-lg-6 mr-5">
+                      <label for="phone" class="form-label"
+                        >Téléphone <span class="text-danger">*</span>
+                      </label>
+                      <input
+                        class="form-control"
+                        id="phone"
+                        placeholder="Entrer Le numéro de téléphone ..."
+                        type="text"
+                        formControlName="phone"
+                        required
+                      />
+                      <div *ngIf="phone?.touched && phone?.invalid">
+                        <small
+                          *ngIf="phone?.errors?.['required']"
+                          class="text-danger"
+                          >Le numéro de téléphone est obligatoire<br
+                        /></small>
                       </div>
-                      <!--repassword-->
-                      <div class="form-group col-12 col-md-12 col-lg-6">
-                        <label for="repassword" class="form-label"
-                          >Répéter le mot de passe
-                          <span class="text-danger">*</span>
-                        </label>
-                        <input
-                          class="form-control"
-                          id="repassword"
-                          placeholder="*****************"
-                          type="password"
-                          formControlName="repassword"
-                        />
-                        <div
-                          *ngIf="
-                            repassword?.value != password?.value
-                          "
-                        >
-                          <small class="text-danger">
-                            Les mots de passe saisis ne correspondent pas</small
+                    </div>
+  
+                        <!--password-->
+                        <div class="form-group col-12 col-md-12 col-lg-6">
+                          <label for="password" class="form-label"
+                            >Mot de passe<span class="text-danger">*</span>
+                          </label>
+                          <input
+                            class="form-control"
+                            id="password"
+                            placeholder="Entrer le mot de passe..."
+                            type="password"
+                            formControlName="password"
+                          />
+                          <div *ngIf="password?.touched && password?.invalid">
+                            <small
+                              *ngIf="password?.errors?.['required']"
+                              class="text-danger"
+                              >Le mot de passe est obligatoire<br
+                            /></small>
+                          </div>
+                        </div>
+                        <!--repassword-->
+                        <div class="form-group col-12 col-md-12 col-lg-6">
+                          <label for="repassword" class="form-label"
+                            >Répéter le mot de passe
+                            <span class="text-danger">*</span>
+                          </label>
+                          <input
+                            class="form-control"
+                            id="repassword"
+                            placeholder="*****************"
+                            type="password"
+                            formControlName="repassword"
+                          />
+                          <div *ngIf="repassword?.touched && repassword?.invalid">
+                            <small
+                              *ngIf="repassword?.errors?.['required']"
+                              class="text-danger"
+                              >Tu dois repeter votre mot de passe<br
+                            /></small>
+                          </div>
+                          <div
+                            *ngIf="
+                              repassword?.valid &&
+                              repassword?.value != password?.value
+                            "
                           >
+                            <small class="text-danger">
+                              Les mots de passe saisis ne correspondent pas</small
+                            >
+                          </div>
                         </div>
-                      </div>
-    
+      
                       <div class="col-12 col-md-12 col-lg-12">
                         <button
                           class="btn btn-info mx-2"

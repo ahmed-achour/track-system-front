@@ -7,24 +7,24 @@ import { Driver } from '../models/driver';
   providedIn: 'root'
 })
 export class DriverService {
-  private _productUrl = `${environment.apiUrl}/drivers/`;
+  private _driverUrl = `${environment.apiUrl}/drivers/`;
   constructor(private _http: HttpClient) {}
   addDriver(product: Driver) {
-    return this._http.post<any>(this._productUrl, product);
+    return this._http.post<any>(this._driverUrl, product);
   }
   allDriver() {
-    return this._http.get<any>(this._productUrl);
-  }
-  getDriversByType(type:string){
-    return this._http.get<any>(this._productUrl +'category/'+ type);
+    return this._http.get<any>(this._driverUrl);
   }
   getOneDriver(id: string) {
-    return this._http.get<any>(this._productUrl + id);
+    return this._http.get<any>(this._driverUrl + id);
   }
   updateDriver(id: string, data: Driver) {
-    return this._http.patch<any>(this._productUrl + id, data);
+    return this._http.patch<any>(this._driverUrl + id, data);
   }
   deleteDriver(id: string) {
-    return this._http.delete<any>(this._productUrl + id);
+    return this._http.delete<any>(this._driverUrl + id);
+  }
+  updateDriverStatus(id: string, data: any) {
+    return this._http.patch<any>(this._driverUrl + id, data);
   }
 }

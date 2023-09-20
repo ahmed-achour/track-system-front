@@ -22,6 +22,9 @@ export class AdminService {
   allAdmins() {
     return this.http.get<any>(this._adminUrl);
   }
+  allStats(selectedYearUser:string,selectedYearDriver:string) {
+    return this.http.get<any>(this._adminUrl+'stats/'+selectedYearUser+'/'+selectedYearDriver);
+  }
   getOneAdmin(_id: string) {
     return this.http.get<any>(this._adminUrl + _id);
   }

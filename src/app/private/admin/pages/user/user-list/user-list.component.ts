@@ -17,9 +17,26 @@ export class UserListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+   this.getUserList()
+  }
+  getUserList(){
     this._userService.allUsers().subscribe({
       next: (res) => {
         this.userList = res.user ?? [];
+      },
+    });
+  }
+  updateUserStatus(id: string) {
+    let data = this.userList.find((user: any) => user._id === id);
+    let state = {};
+    if (data.state == 'available') state = { state: 'unavailable' };
+    else state = { state: 'available' };
+    this._userService.updateUser(id, state).subscribe({
+      next: (res) => {
+        this.getUserList();
+      },
+      error: (err) => {
+        this._toastr.error(err.error.message);
       },
     });
   }
@@ -27,7 +44,7 @@ export class UserListComponent implements OnInit {
 
     this._userService.deleteUser(id).subscribe({
       next: (res) => {
-        this._toastr.success("Le producteur est supprimé");
+        this._toastr.success("L'utilisateur est supprimé");
       },
       error: (err) => {},
       complete: () => {

@@ -27,6 +27,13 @@ import { UpdateMessageComponent } from './pages/message/update-message/update-me
 import { AddMessageComponent } from './pages/message/add-message/add-message.component';
 import { SingleMessageComponent } from './pages/message/single-message/single-message.component';
 import { ListMessageComponent } from './pages/message/list-message/list-message.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgChartsModule } from 'ng2-charts';
+import { CarteComponent } from './pages/carte/carte.component';
+import { AddRouteComponent } from './pages/routes/add-route/add-route.component';
+import { UpdateRouteComponent } from './pages/routes/update-route/update-route.component';
 
 
 
@@ -52,6 +59,10 @@ import { ListMessageComponent } from './pages/message/list-message/list-message.
     AddMessageComponent,
     SingleMessageComponent,
     ListMessageComponent,
+    DashboardComponent,
+    CarteComponent,
+    AddRouteComponent,
+    UpdateRouteComponent,
   ],
   imports: [
     CommonModule,
@@ -61,6 +72,10 @@ import { ListMessageComponent } from './pages/message/list-message/list-message.
     SharedModule,
     SweetAlert2Module.forRoot(),
     NgbPaginationModule,
+    NgxSpinnerModule,
+    NgChartsModule
+
+
   ]
 })
 export class AdminModule { }

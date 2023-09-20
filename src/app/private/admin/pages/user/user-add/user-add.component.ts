@@ -28,6 +28,8 @@ export class UserAddComponent implements OnInit {
       phone: new FormControl('', [Validators.required, Validators.pattern('^((?!(0))[0-9]*)$'),]),
       password: new FormControl('', [Validators.required]),
       repassword: new FormControl('',[Validators.required]),
+      address: new FormControl('', [Validators.required]),
+
     };
     this.addUserForm = this._fb.group(formControls);
   }
@@ -44,16 +46,19 @@ export class UserAddComponent implements OnInit {
   get repassword() {
     return this.addUserForm.get('repassword');
   }
+  get address() {
+    return this.addUserForm.get('address');
+  }
 
   ngOnInit(): void {}
   addUser() {
     let data = this.addUserForm.value;
 
-    let user = new User(data.phone, data.password, data.fullName);
+    let user = new User(data.phone, data.password, data.fullName, data.address, "available");
 
     this._userService.addUser(user).subscribe({
       next: (_result) => {
-        this._toastr.success("Le producteur a été ajouté avec succès");
+        this._toastr.success("L'utilisateur a été ajouté avec succès");
         this._router.navigate(['/users']);
       },
       error: (err) => {

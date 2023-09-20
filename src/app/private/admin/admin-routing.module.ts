@@ -17,6 +17,10 @@ import { UpdateDriverComponent } from './pages/driver/update-driver/update-drive
 import { ListTruckComponent } from './pages/truck/list-truck/list-truck.component';
 import { AddTruckComponent } from './pages/truck/add-truck/add-truck.component';
 import { UpdateTruckComponent } from './pages/truck/update-truck/update-truck.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CarteComponent } from './pages/carte/carte.component';
+import { AddRouteComponent } from './pages/routes/add-route/add-route.component';
+import { UpdateRouteComponent } from './pages/routes/update-route/update-route.component';
 
 const routes: Routes = [
   {
@@ -25,6 +29,29 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
+      {
+        path: 'carte',
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: '',
+            component: CarteComponent,
+          },
+          {
+            path: 'add',
+            component: AddRouteComponent,
+          },
+          {
+            path: 'update/:id',
+            component: UpdateRouteComponent,
+          },
+            
+          ]
       },
       {
         path: 'admins',

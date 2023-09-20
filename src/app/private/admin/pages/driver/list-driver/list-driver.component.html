@@ -1,148 +1,205 @@
 <div id="db-wrapper">
-    <app-side-bar></app-side-bar>
-    <div id="page-content">
-      <app-nav-bar></app-nav-bar>
-      <div class="container-fluid p-4">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-12">
-            <!-- Page Header -->
-            <div
-              class="border-bottom pb-2 d-lg-flex align-items-center justify-content-between"
-            >
-              <div class="mb-2 mb-lg-0">
-                <h1 class="mb-1 h2 font-weight-bold">Gestion des chauffeur</h1>
-              </div>
-              <div>
-                <a routerLink="add" class="btn btn-info btn-sm"
-                  >Ajouter un chauffeur</a
-                >
-              </div>
+  <app-side-bar></app-side-bar>
+  <div id="page-content">
+    <app-nav-bar></app-nav-bar>
+    <div class="container-fluid p-4">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <!-- Page Header -->
+          <div
+            class="border-bottom pb-2 d-lg-flex align-items-center justify-content-between"
+          >
+            <div class="mb-2 mb-lg-0">
+              <h1 class="mb-1 h2 font-weight-bold">Gestion des chauffeurs</h1>
+            </div>
+            <div>
+              <a routerLink="add" class="btn btn-info btn-sm"
+                >Ajouter un chauffeur</a
+              >
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-12">
-            <!-- Card -->
-            <div class="card rounded-lg">
-              <!-- Card header -->
-              <div class="card-header border-bottom-0 p-0 bg-white">
-                <div>
-                  <!-- Nav -->
-                  <ul class="nav nav-lb-tab" id="tab" role="tablist">
-                    <li class="nav-item">
-                      <a
-                        class="nav-link active"
-                        id="events-tab"
-                        data-toggle="pill"
-                        role="tab"
-                        aria-controls="events"
-                        aria-selected="true"
-                        >tous</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <!-- Card -->
+          <div class="card rounded-lg">
+            <!-- Card header -->
+            <div class="card-header border-bottom-0 p-0 bg-white">
               <div>
-                <div class="tab-content" id="tabContent">
-                  <div
-                    class="tab-pane fade show active"
-                    id="events"
-                    role="tabpanel"
-                    aria-labelledby="events-tab"
-                  >
-                    <div class="table-responsive border-0 overflow-y-hidden">
-                      <table class="table mb-0 text-nowrap">
-                        <thead>
-                          <tr>
-                            <th scope="col" class="border-0 text-uppercase">
-                              Nom complet
-                            </th>
-                            <th scope="col" class="border-0 text-uppercase">
-                              Téléphone
-                            </th>
-                         
-                            <th scope="col" class="border-0 text-uppercase"></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr
-                            *ngFor="
-                              let driver of driverList
-                                | slice: (page - 1) * pageSize:page * pageSize;
-                              let i = index
-                            "
-                          >
-                            <td class="align-middle border-top-0">
-                              <div class="d-flex align-items-center">
-                                <h5 class="mb-0">
-                                  {{ driver.fullName }}
-                                </h5>
-                              </div>
-                            </td>
-                            <td class="align-middle border-top-0">
-                              <div class="d-flex align-items-center">
-                                <h5 class="mb-0">
-                                  {{ driver.phone }}
-                                </h5>
-                              </div>
-                            </td>
-                           
-                            <td class="align-middle border-top-0">
-                              <a
-                              class="btn btn-outline-info btn-sm mx-1"
-                              [routerLink]="['/forms/driver/', driver._id]"
-                              ><i class="fa-solid fa-rectangle-list"></i></a
-                            >
-                              <a
-                                class="btn btn-outline-warning btn-sm mx-1"
-                                [routerLink]="['update/', driver._id]"
-                                ><i class="fa-solid fa-square-pen"></i></a
-                              >
-                              <a
-                                class="btn btn-outline-danger btn-sm mx-1"
-                                [swal]="{
-                                  text:
-                                    'voulez vous vraiment supprimer ce' +
-                                    driver.fullName +
-                                    ', tu es sure ?',
-                                  icon: 'warning',
-                                  showCancelButton: true,
-                                  confirmButtonText: 'supprimer',
-                                  confirmButtonColor: 'red'
-                                }"
-                                (confirm)="delete(driver._id, i)"
-                                ><i class="fa-solid fa-trash"></i></a
-                              >
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                <!-- Nav -->
+                <ul class="nav nav-lb-tab" id="tab" role="tablist">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link active"
+                      id="events-tab"
+                      data-toggle="pill"
+                      role="tab"
+                      aria-controls="events"
+                      aria-selected="true"
+                      >tous</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="tab-content" id="tabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="events"
+                  role="tabpanel"
+                  aria-labelledby="events-tab"
+                >
+                  <div class="table-responsive border-0 overflow-y-hidden">
+                    <table class="table mb-0 text-nowrap">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="border-0 text-uppercase">
+                            Nom complet
+                          </th>
+                          <th scope="col" class="border-0 text-uppercase">
+                            Etat
+                          </th>
+                          <th scope="col" class="border-0 text-uppercase">
+                            Département
+                          </th>
+                          <th scope="col" class="border-0 text-uppercase">
+                            Email
+                          </th>
+                          <th scope="col" class="border-0 text-uppercase">
+                            Téléphone
+                          </th>
+                          <th scope="col" class="border-0 text-uppercase">
+                            N° de CIN
+                          </th>
+                          <th scope="col" class="border-0 text-uppercase">
+                            N° de permis
+                          </th>
+                          <th scope="col" class="border-0 text-uppercase">
+                            Véhicule util
+                          </th>
+                          <th scope="col" class="border-0 text-uppercase"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="
+                            let driver of driverList
+                              | slice : (page - 1) * pageSize : page * pageSize;
+                            let i = index
+                          "
+                        >
+                          <td class="align-middle border-top-0">
+                            <div class="d-flex align-items-center">
+                              <h5 class="mb-0">
+                                {{ driver.fullName }}
+                              </h5>
+                            </div>
+                          </td>
+                          
+                          <td class="align-middle border-top-0">
+                            <div class="d-flex align-items-center">
+                              <h3 class="mb-0" >
+                                <i *ngIf="driver.state=='available'" class="fa-solid fa-person-circle-check" style="color: #29b344;"></i>
+                                <i *ngIf="driver.state=='unavailable'" class="fa-solid fa-person-circle-minus" style="color: #ec3636;"></i>
+                              </h3>
+                            </div>
+                          </td>
+                          <td class="align-middle border-top-0">
+                            <div class="d-flex align-items-center">
+                              <h5 class="mb-0">
+                                {{ driver.department }}
+                              </h5>
+                            </div>
+                          </td>
+                          <td class="align-middle border-top-0">
+                            <div class="d-flex align-items-center">
+                              <h5 class="mb-0">
+                                {{ driver.email }}
+                              </h5>
+                            </div>
+                          </td>
+                          <td class="align-middle border-top-0">
+                            <div class="d-flex align-items-center">
+                              <h5 class="mb-0">
+                                {{ driver.phone }}
+                              </h5>
+                            </div>
+                          </td>
+                          <td class="align-middle border-top-0">
+                            <div class="d-flex align-items-center">
+                              <h5 class="mb-0">
+                                {{ driver.cid }}
+                              </h5>
+                            </div>
+                          </td>
+                          <td class="align-middle border-top-0">
+                            <div class="d-flex align-items-center">
+                              <h5 class="mb-0">
+                                {{ driver.pid }}
+                              </h5>
+                            </div>
+                          </td>
+                          <td class="align-middle border-top-0">
+                            <div class="d-flex align-items-center">
+                              <h5 class="mb-0">
+                                
+                              </h5>
+                            </div>
+                          </td>
+                          <td class="align-middle border-top-0">
+                            <a *ngIf="driver.state== 'unavailable'" class="btn btn-success px-4 btn-sm mx-1 activate"
+                            (click)="updateDriverStatus(driver._id)">Activer</a>
+                          <a *ngIf="driver.state== 'available'" class="btn btn-secondary btn-sm mx-1"
+                            (click)="updateDriverStatus(driver._id)">Désactiver</a>
+                            <a
+                              class="btn btn-outline-warning btn-sm mx-1"
+                              [routerLink]="['update/', driver._id]"
+                              ><i class="fa-solid fa-square-pen"></i
+                            ></a>
+                            <a
+                              class="btn btn-outline-danger btn-sm mx-1"
+                              [swal]="{
+                                text:
+                                  'voulez vous vraiment supprimer ce' +
+                                  driver.fullName +
+                                  ', tu es sure ?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'supprimer',
+                                confirmButtonColor: 'red'
+                              }"
+                              (confirm)="delete(driver._id, i)"
+                              ><i class="fa-solid fa-trash"></i
+                            ></a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
-  
-              <div class="card-footer">
-                <nav aria-label="Page navigation example">
+            </div>
+
+            <div class="card-footer">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center mb-0">
                   <ul class="pagination justify-content-center mb-0">
-                    <ul class="pagination justify-content-center mb-0">
-                      <ngb-pagination
-                        *ngIf="driverList.length > 0"
-                        [(page)]="page"
-                        [pageSize]="pageSize"
-                        [collectionSize]="driverList.length"
-                        aria-label="Default pagination"
-            
-                      ></ngb-pagination>
-                    </ul>
+                    <ngb-pagination
+                      *ngIf="driverList.length > 0"
+                      [(page)]="page"
+                      [pageSize]="pageSize"
+                      [collectionSize]="driverList.length"
+                      aria-label="Default pagination"
+                    ></ngb-pagination>
                   </ul>
-                </nav>
-              </div>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

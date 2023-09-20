@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DriverService } from '@private/admin/services/driver.service';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './add-truck.component.html',
   styleUrls: ['./add-truck.component.scss']
 })
-export class AddTruckComponent {
+export class AddTruckComponent implements OnInit {
   addTruckForm: FormGroup;
   driverList: any[] = [];
   constructor(
@@ -24,6 +24,11 @@ export class AddTruckComponent {
       type: new FormControl('', [Validators.required]),
       serie: new FormControl('', [Validators.required]),
       driver: new FormControl('',[Validators.required]),
+      model: new FormControl('',[Validators.required]),
+      year: new FormControl('',[Validators.required]),
+      energyType: new FormControl('',[Validators.required]),
+
+
     };
     this.addTruckForm = this._fb.group(formControls);
   }
@@ -37,10 +42,25 @@ export class AddTruckComponent {
   get driver() {
     return this.addTruckForm.get('driver');
   }
+  get model() {
+    return this.addTruckForm.get('model');
+  }
+  get year() {
+    return this.addTruckForm.get('year');
+  }
+  get energyType() {
+    return this.addTruckForm.get('energyType');
+  }
   
   
   changeDriver(e: any) {
     this.driver?.setValue(e.target.value, {
+      onlySelf: true,
+    });
+  }
+
+  changeEnergyType(e: any) {
+    this.energyType?.setValue(e.target.value, {
       onlySelf: true,
     });
   }
@@ -59,11 +79,15 @@ export class AddTruckComponent {
     let truck = {
       serie : data.serie, 
       type: data.type,
-      driver: data.driver};
+      driver: data.driver,
+      state: "available",
+      model: data.model,
+      year: data.year,
+      energyType: data.energyType};
 
     this._truckService.addTruck(truck).subscribe({
       next: (_result) => {
-        this._toastr.success("Le camoin a été ajouté avec succès");
+        this._toastr.success("La véhicule a été ajoutée avec succès");
         this._router.navigate(['/trucks']);
       },
       error: (err) => {

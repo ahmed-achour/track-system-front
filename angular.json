@@ -30,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -94,6 +95,8 @@
             ],
             "styles": [
               "src/styles.scss"
+              
+
             ],
             "scripts": []
           }

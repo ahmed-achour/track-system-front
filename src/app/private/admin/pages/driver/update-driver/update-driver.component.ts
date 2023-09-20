@@ -21,7 +21,14 @@ export class UpdateDriverComponent {
   ) {
     let formControls = {
       fullName: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required, Validators.pattern('^((?!(0))[0-9]*)$')],),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^((?!(0))[0-9]*)$'),
+      ]),
+      department: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      cid: new FormControl('', [Validators.required]),
+      pid: new FormControl('', [Validators.required]),
      
     };
     this.updateDriverForm = this._fb.group(formControls);
@@ -29,6 +36,19 @@ export class UpdateDriverComponent {
 
   get fullName() {
     return this.updateDriverForm.get('fullName');
+  }
+
+  get department() {
+    return this.updateDriverForm.get('department');
+  }
+  get email() {
+    return this.updateDriverForm.get('email');
+  }
+  get cid() {
+    return this.updateDriverForm.get('cid');
+  }
+  get pid() {
+    return this.updateDriverForm.get('pid');
   }
   get phone() {
     return this.updateDriverForm.get('phone');
@@ -43,6 +63,10 @@ export class UpdateDriverComponent {
         this.updateDriverForm.patchValue({
           phone: res.driver.phone,
           fullName: res.driver.fullName,
+          department: res.driver.department,
+          email: res.driver.email,
+          cid: res.driver.cid,
+          pid: res.driver.pid,
         });
       },
       error: (error) => {
@@ -55,7 +79,13 @@ export class UpdateDriverComponent {
     let id = this._route.snapshot.params['id'];
     let data = this.updateDriverForm.value;
 
-    let driver = new Driver( data.fullName , data.phone );
+    let driver = new Driver(  data.fullName,
+      data.phone,
+      'available',
+      data.department,
+      data.email,
+      data.cid,
+      data.pid );
 
     this._driverService.updateDriver(id, driver).subscribe({
       next: (_result) => {

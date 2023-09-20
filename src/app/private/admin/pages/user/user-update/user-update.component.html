@@ -32,7 +32,7 @@
                   [formGroup]="updateUserForm"
                   (ngSubmit)="updateUser()"
                 >
-                <!--fullName-->
+                  <!--fullName-->
                   <div class="form-group col-12 col-md-12 col-lg-6">
                     <label for="fullName" class="form-label"
                       >Nom Complet<span class="text-danger">*</span>
@@ -73,12 +73,39 @@
                         >Le numéro de téléphone est obligatoire<br
                       /></small>
                       <small
-                      *ngIf="phone?.errors?.['pattern']"
-                      class="text-danger"
-                      >Le numéro de téléphone est invalide<br
-                    /></small>
+                        *ngIf="phone?.errors?.['pattern']"
+                        class="text-danger"
+                        >Le numéro de téléphone est invalide<br
+                      /></small>
                     </div>
                   </div>
+                  <!--address-->
+                  <div class="form-group col-12 col-md-12 col-lg-6">
+                    <label for="phone" class="form-label"
+                      >adresse<span class="text-danger">*</span>
+                    </label>
+                    <input
+                      class="form-control"
+                      id="address"
+                      placeholder="Enter l'adresse..."
+                      type="text"
+                      formControlName="address"
+                      required
+                    />
+                    <div *ngIf="address?.touched && address?.invalid">
+                      <small
+                        *ngIf="address?.errors?.['required']"
+                        class="text-danger"
+                        >L'adresse est obligatoire<br
+                      /></small>
+                      <small
+                        *ngIf="address?.errors?.['pattern']"
+                        class="text-danger"
+                        >L'adresse est invalide<br
+                      /></small>
+                    </div>
+                  </div>
+
                   <!--password-->
                   <div class="form-group col-12 col-md-12 col-lg-6">
                     <label for="password" class="form-label"

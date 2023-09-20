@@ -9,7 +9,7 @@
             <div class="col-lg-12 col-md-12 col-12">
               <div class="border-bottom pb-4 mb-4">
                 <div class="mb-2 mb-lg-0">
-                  <h1 class="mb-1 h2 font-weight-bold">Modifier un camoin</h1>
+                  <h1 class="mb-1 h2 font-weight-bold">Modifier un véhicule</h1>
                 </div>
               </div>
             </div>
@@ -20,7 +20,7 @@
               <div class="card mb-4">
                 <!-- Card header -->
                 <div class="card-header">
-                  <h4 class="mb-0">Modifier un camoin</h4>
+                  <h4 class="mb-0">Modifier un véhicule</h4>
                 </div>
                 <!-- Card body -->
                 <div class="card-body">
@@ -30,94 +30,149 @@
                     [formGroup]="updateTruckForm"
                     (ngSubmit)="updateTruck()"
                   >
-                       <!--serie-->
-                       <div class="form-group col-12 col-md-12 col-lg-6">
-                        <label for="serie" class="form-label"
-                          >Numero serie Complet<span class="text-danger">*</span>
-                        </label>
-                        <input
-                          class="form-control"
-                          id="serie"
-                          placeholder="Enter le nom Complet..."
-                          type="text"
-                          formControlName="serie"
-                          required
-                        />
-                        <div *ngIf="serie?.touched && serie?.invalid">
-                          <small
-                            *ngIf="serie?.errors?.['required']"
-                            class="text-danger"
-                            >Le nom Complet est obligatoire<br
-                          /></small>
-                        </div>
-                      </div>
-                      <!--type-->
-                      <div class="form-group col-12 col-md-12 col-lg-6">
-                        <label for="type" class="form-label"
-                          >type<span class="text-danger">*</span>
-                        </label>
-                        <input
-                          class="form-control"
-                          id="type"
-                          placeholder="Enter le numéro de télétype..."
-                          type="text"
-                          formControlName="type"
-                          required
-                        />
-                        <div *ngIf="type?.touched && type?.invalid">
-                          <small
-                            *ngIf="type?.errors?.['required']"
-                            class="text-danger"
-                            >Le numéro de télétype est obligatoire<br
-                          /></small>
-                          <small
-                            *ngIf="type?.errors?.['pattern']"
-                            class="text-danger"
-                            >Le numéro de télétype est invalide<br
-                          /></small>
-                        </div>
-                      </div>
+                    <!--serie-->
+                  <div class="form-group col-12 col-md-12 col-lg-6">
+                    <label for="serie" class="form-label"
+                      >Numero serie Complet<span class="text-danger">*</span>
+                    </label>
+                    <input
+                      class="form-control"
+                      id="serie"
+                      placeholder="Enter le nom Complet..."
+                      type="text"
+                      formControlName="serie"
+                      required
+                    />
+                    <div *ngIf="serie?.touched && serie?.invalid">
+                      <small
+                        *ngIf="serie?.errors?.['required']"
+                        class="text-danger"
+                        >Le nom Complet est obligatoire<br
+                      /></small>
+                    </div>
+                  </div>
 
-                      <div class="form-group col-12 col-md-12 col-lg-6">
-                        <label for="type" class="form-label"
-                          >type<span class="text-danger">*</span>
-                        </label>
-                        <input
-                          class="form-control"
-                          id="type"
-                          placeholder="Enter le numéro de télétype..."
-                          type="text"
-                          formControlName="type"
-                          required
-                        />
-                        <div *ngIf="type?.touched && type?.invalid">
-                          <small
-                            *ngIf="type?.errors?.['required']"
-                            class="text-danger"
-                            >Le type est obligatoire<br
-                          /></small>
-                          <small
-                            *ngIf="type?.errors?.['pattern']"
-                            class="text-danger"
-                            >Le type est invalide<br
-                          /></small>
-                        </div>
-                      </div>
+                  <div class="form-group col-12 col-md-12 col-lg-6">
+                    <label for="type" class="form-label"
+                      >type<span class="text-danger">*</span>
+                    </label>
+                    <input
+                      class="form-control"
+                      id="type"
+                      placeholder="Enter le numéro de télétype..."
+                      type="text"
+                      formControlName="type"
+                      required
+                    />
+                    <div *ngIf="type?.touched && type?.invalid">
+                      <small
+                        *ngIf="type?.errors?.['required']"
+                        class="text-danger"
+                        >Le type est obligatoire<br
+                      /></small>
+                      <small
+                        *ngIf="type?.errors?.['pattern']"
+                        class="text-danger"
+                        >Le type est invalide<br
+                      /></small>
+                    </div>
+                  </div>
 
-                      <label class="form-label text-primary mr-2">Chauffeur:</label>
-                      <select id="driver" class="form-control mr-4" formControlName="driver"
-                        (change)="changeDriver($event)">
-                        <option disabled value="">
-                          Sélectionner le chauffeur
-                        </option>
-                        
-                          <option *ngFor="let driver of driverList"
-                            value="{{ driver._id }}">
-                            {{ driver.fullName }}
-                          </option>
-                       
+                  <div class="form-group col-12 col-md-12 col-lg-6">
+                    <label for="model" class="form-label"
+                      >Modèle<span class="text-danger">*</span>
+                    </label>
+                    <input
+                      class="form-control"
+                      id="model"
+                      placeholder="Enter le modèle..."
+                      type="text"
+                      formControlName="model"
+                      required
+                    />
+                    <div *ngIf="model?.touched && model?.invalid">
+                      <small
+                        *ngIf="model?.errors?.['required']"
+                        class="text-danger"
+                        >Le modèle est obligatoire<br
+                      /></small>
+                      <small
+                        *ngIf="model?.errors?.['pattern']"
+                        class="text-danger"
+                        >Le modèle est invalide<br
+                      /></small>
+                    </div>
+                  </div>
 
-                      </select>
+                  <div class="form-group col-12 col-md-12 col-lg-6">
+                    <label for="year" class="form-label"
+                      >Année<span class="text-danger">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      min="1900"
+                      max="2099"
+                      step="1"
+                      value="2016"
+                      class="form-control"
+                      id="year"
+                      placeholder="Enter l'année..."
+                      formControlName="year"
+                      required
+                    />
+                    <div *ngIf="year?.touched && year?.invalid">
+                      <small
+                        *ngIf="year?.errors?.['required']"
+                        class="text-danger"
+                        >L'année est obligatoire<br
+                      /></small>
+                      <small
+                        *ngIf="year?.errors?.['pattern']"
+                        class="text-danger"
+                        >L'année est invalide<br
+                      /></small>
+                    </div>
+                  </div>
+                  <div class="form-group col-12 col-md-12 col-lg-6">
+                    <label class="form-label text-primary mr-2"
+                      >Type d'énergie:</label
+                    >
+                    <select
+                      id="energyType"
+                      class="form-control mr-4"
+                      formControlName="energyType"
+                      (change)="changeEnergyType($event)"
+                    >
+                      <option disabled value="">
+                        Sélectionner le type d'energie
+                      </option>
+
+                      <option value="diesel">gasoil</option>
+                      <option value="fuel">carburant</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-12 col-md-12 col-lg-6">
+                    <label class="form-label text-primary mr-2"
+                      >Chauffeur:</label
+                    >
+                    <select
+                      id="driver"
+                      class="form-control mr-4"
+                      formControlName="driver"
+                      (change)="changeDriver($event)"
+                    >
+                      <option disabled value="">
+                        Sélectionner le chauffeur
+                      </option>
+
+                      <option
+                        *ngFor="let driver of driverList"
+                        value="{{ driver._id }}"
+                      >
+                        {{ driver.fullName }}
+                      </option>
+                    </select>
+                  </div>
 
                       <div class="col-12 col-md-12 col-lg-12">
                         <button

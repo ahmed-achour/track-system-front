@@ -1,0 +1,117 @@
+<div id="db-wrapper">
+  <app-side-bar></app-side-bar>
+  <div id="page-content">
+    <app-nav-bar></app-nav-bar>
+    <div class="container-fluid p-4">
+      <!-- CONTENT-->
+      <div id="layoutSidenav_content">
+        <main>
+          <ngx-spinner
+          bdColor="rgba(51,51,51,0.8)"
+          size="medium"
+          color="#fff"
+          type="ball-scale-multiple"
+        >
+          <p style="font-size: 20px; color: white">Loading...</p>
+        </ngx-spinner>
+          <div class="container-fluid px-4">
+            <h1 class="mt-4">Tableau de bord</h1>
+            <ol class="breadcrumb mb-4">
+              <li class="breadcrumb-item active">Statistique</li>
+            </ol>
+            <div class="row">
+              <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                  <div class="card-body mt-2">
+                    <h3 class="text-white">Nombre de véhiculess</h3>
+                    <h3 class="tex-center stat">{{ stats?.nbrTrucks }}</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                  <div class="card-body mt-2">
+                    <h3 class="text-white">Nombre de chauffeurs</h3>
+                    <h3 class="tex-center stat">{{ stats?.nbrDrivers }}</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                  <div class="card-body mt-2">
+                    <h3 class="text-white">Nombre d'utilisateurs</h3>
+                    <h3 class="tex-center stat">{{ stats?.nbrUsers }}</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-6">
+                <div class="card bg-dark text-white mb-4">
+                  <div class="card-body mt-2">
+                    <h3 class="text-white">Nombre d'administrateurs</h3>
+                    <h3 class="tex-center stat">{{ stats?.nbrAdmins }}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6">
+                <div class="card mb-4">
+                  <div class="card-header" >
+                    <i class="fas fa-chart-area me-1"></i>
+                    Le nombre des inscriptions par mois
+                    <select #year class="ms-auto form-select-sm years" >
+                      <ng-container   *ngFor="let year of years" >
+                        <option value="{{year}}" [selected]="year=== currentYear">{{year}}</option>
+                      </ng-container>
+                 
+                    </select>
+                  </div>
+                  <div class="card-body">
+                    <canvas
+                      baseChart
+                      [data]="grapheUsers"
+                      [options]="barChartOptions"
+                      [type]="barChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"
+                      width="100%"
+                      height="40"
+                    >
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    <i class="fas fa-chart-bar me-1"></i>
+                    Le nombre des chauffers par mois
+                    <select #yearf class="ms-auto sm form-select-sm years" >
+                      <ng-container   *ngFor="let year of years" >
+                        <option value="{{year}}" [selected]="year=== currentYear">{{year}}</option>
+                      </ng-container>
+                    </select>
+                  </div>
+                  <div class="card-body">
+                    <canvas
+                      baseChart
+                      [data]="grapheDrivers"
+                      [options]="barChartOptions"
+                      [type]="barChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"
+                      width="100%"
+                      height="40"
+                    >
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sb-nav-fixed"></div>

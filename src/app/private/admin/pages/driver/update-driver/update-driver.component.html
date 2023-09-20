@@ -32,55 +32,142 @@
                     [formGroup]="updateDriverForm"
                     (ngSubmit)="updateDriver()"
                   >
-                  <!--fullName-->
-                    <div class="form-group col-12 col-md-12 col-lg-6">
-                      <label for="fullName" class="form-label"
-                        >Nom Complet<span class="text-danger">*</span>
-                      </label>
-                      <input
-                        class="form-control"
-                        id="fullName"
-                        placeholder="Enter le nom Complet..."
-                        type="text"
-                        formControlName="fullName"
-                        required
-                      />
-                      <div *ngIf="fullName?.touched && fullName?.invalid">
-                        <small
-                          *ngIf="fullName?.errors?.['required']"
-                          class="text-danger"
-                          >Le nom Complet est obligatoire<br
-                        /></small>
-                      </div>
-                    </div>
-                    <!--phone-->
-                    <div class="form-group col-12 col-md-12 col-lg-6">
-                      <label for="phone" class="form-label"
-                        >Téléphone<span class="text-danger">*</span>
-                      </label>
-                      <input
-                        class="form-control"
-                        id="phone"
-                        placeholder="Enter le numéro de téléphone..."
-                        type="text"
-                        formControlName="phone"
-                        required
-                      />
-                      <div *ngIf="phone?.touched && phone?.invalid">
-                        <small
-                          *ngIf="phone?.errors?.['required']"
-                          class="text-danger"
-                          >Le numéro de téléphone est obligatoire<br
-                        /></small>
-                        <small
-                        *ngIf="phone?.errors?.['pattern']"
-                        class="text-danger"
-                        >Le numéro de téléphone est invalide<br
-                      /></small>
-                      </div>
-                    </div>
-                
-  
+                 <!--fullName-->
+                 <div class="form-group col-12 col-md-12 col-lg-6">
+                  <label for="fullName" class="form-label"
+                    >Nom Complet<span class="text-danger">*</span>
+                  </label>
+                  <input
+                    class="form-control"
+                    id="fullName"
+                    placeholder="Enter le nom Complet..."
+                    type="text"
+                    formControlName="fullName"
+                    required
+                  />
+                  <div *ngIf="fullName?.touched && fullName?.invalid">
+                    <small
+                      *ngIf="fullName?.errors?.['required']"
+                      class="text-danger"
+                      >Le nom Complet est obligatoire<br
+                    /></small>
+                  </div>
+                </div>
+                <!--phone-->
+                <div class="form-group col-12 col-md-12 col-lg-6">
+                  <label for="phone" class="form-label"
+                    >Téléphone<span class="text-danger">*</span>
+                  </label>
+                  <input
+                    class="form-control"
+                    id="phone"
+                    placeholder="Enter le numéro de téléphone..."
+                    type="text"
+                    formControlName="phone"
+                    required
+                  />
+                  <div *ngIf="phone?.touched && phone?.invalid">
+                    <small
+                      *ngIf="phone?.errors?.['required']"
+                      class="text-danger"
+                      >Le numéro de téléphone est obligatoire<br
+                    /></small>
+                    <small
+                      *ngIf="phone?.errors?.['pattern']"
+                      class="text-danger"
+                      >Le numéro de téléphone est invalide<br
+                    /></small>
+                  </div>
+                </div>
+                <!--email-->
+                <div class="form-group col-12 col-md-12 col-lg-6">
+                  <label for="email" class="form-label"
+                    >Email<span class="text-danger">*</span>
+                  </label>
+                  <input
+                    class="form-control"
+                    id="email"
+                    placeholder="Enter le numéro de téléemail..."
+                    type="text"
+                    formControlName="email"
+                    required
+                  />
+                  <div *ngIf="email?.touched && email?.invalid">
+                    <small
+                      *ngIf="email?.errors?.['required']"
+                      class="text-danger"
+                      >L'email est obligatoire<br
+                    /></small>
+                  </div>
+                </div>
+
+                 <!--department-->
+                 <div class="form-group col-12 col-md-12 col-lg-6">
+                  <label for="department" class="form-label"
+                    >Département<span class="text-danger">*</span>
+                  </label>
+                  <input
+                    class="form-control"
+                    id="department"
+                    placeholder="Enter le numéro de télédepartment..."
+                    type="text"
+                    formControlName="department"
+                    required
+                  />
+                  <div *ngIf="department?.touched && department?.invalid">
+                    <small
+                      *ngIf="department?.errors?.['required']"
+                      class="text-danger"
+                      >La département est obligatoire<br
+                    /></small>
+                  </div>
+                </div>
+
+                 <!--cin-->
+                 <div class="form-group col-12 col-md-12 col-lg-6">
+                  <label for="cid" class="form-label"
+                    >N° de CIN<span class="text-danger">*</span>
+                  </label>
+                  <input
+                    class="form-control"
+                    id="cid"
+                    placeholder="Enter le numéro de télécid..."
+                    type="text"
+                    formControlName="cid"
+                    required
+                  />
+                  <div *ngIf="cid?.touched && cid?.invalid">
+                    <small
+                      *ngIf="cid?.errors?.['required']"
+                      class="text-danger"
+                      >Le N° de CIN est obligatoire<br
+                    /></small>
+                  </div>
+                </div>
+
+                 <!--pid-->
+                 <div class="form-group col-12 col-md-12 col-lg-6">
+                  <label for="pid" class="form-label"
+                    >N° de permis<span class="text-danger">*</span>
+                  </label>
+                  <input
+                    class="form-control"
+                    id="pid"
+                    placeholder="Enter le numéro de télépid..."
+                    type="text"
+                    formControlName="pid"
+                    required
+                  />
+                  <div *ngIf="pid?.touched && pid?.invalid">
+                    <small
+                      *ngIf="pid?.errors?.['required']"
+                      class="text-danger"
+                      >Le N° de permis est obligatoire<br
+                    /></small>
+                  </div>
+                </div>
+
+
                     <div class="col-12 col-md-12 col-lg-12">
                       <button
                         class="btn btn-warning mx-2"

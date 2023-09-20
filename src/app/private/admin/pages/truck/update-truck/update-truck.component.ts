@@ -27,6 +27,9 @@ export class UpdateTruckComponent {
       type: new FormControl('', [Validators.required]),
       serie: new FormControl('', [Validators.required]),
       driver: new FormControl('',[Validators.required]),
+      model: new FormControl('',[Validators.required]),
+      year: new FormControl('',[Validators.required]),
+      energyType: new FormControl('',[Validators.required]),
     };
     this.updateTruckForm = this._fb.group(formControls);
   }
@@ -39,14 +42,27 @@ export class UpdateTruckComponent {
   }
   get driver() {
     return this.updateTruckForm.get('driver');
-  } 
-
+  }
+  get model() {
+    return this.updateTruckForm.get('model');
+  }
+  get year() {
+    return this.updateTruckForm.get('year');
+  }
+  get energyType() {
+    return this.updateTruckForm.get('energyType');
+  }  
   changeDriver(e: any) {
     this.driver?.setValue(e.target.value, {
       onlySelf: true,
     });
   }
 
+  changeEnergyType(e: any) {
+    this.energyType?.setValue(e.target.value, {
+      onlySelf: true,
+    });
+  }
 
   ngOnInit(): void {
     let id = this._route.snapshot.params['id'];
@@ -61,6 +77,9 @@ export class UpdateTruckComponent {
           serie: res.truck.serie,
           type: res.truck.type,
           driver: res.truck.driver,
+          model: res.truck.model,
+          year: res.truck.year,
+          energyType: res.truck.energyType,
         });
       },
       error: (error) => {
@@ -77,7 +96,7 @@ export class UpdateTruckComponent {
 
     this._truckService.updateTruck(id, truck).subscribe({
       next: (_result) => {
-        this._toastr.success("Le producteur a été modifié avec succès");
+        this._toastr.success("La véhicule a été modifié avec succès");
         this._router.navigate(['/trucks']);
       },
       error: (err) => {

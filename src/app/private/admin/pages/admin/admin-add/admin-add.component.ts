@@ -17,7 +17,6 @@ import { AdminService } from '../../../services/admin.service';
   styleUrls: ['./admin-add.component.scss']
 })
 export class AdminAddComponent implements OnInit {
-  public countries:any = countries
   addAdminForm: FormGroup;
   constructor(
     private _fb: FormBuilder,
@@ -29,7 +28,8 @@ export class AdminAddComponent implements OnInit {
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email,]),
-      country: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
       repassword: new FormControl('',[Validators.required]),
     };
@@ -45,8 +45,12 @@ export class AdminAddComponent implements OnInit {
   get email() {
     return this.addAdminForm.get('email');
   }
-  get country() {
-    return this.addAdminForm.get('country');
+  
+  get address() {
+    return this.addAdminForm.get('address');
+  }
+  get phone() {
+    return this.addAdminForm.get('phone');
   }
   get password() {
     return this.addAdminForm.get('password');
@@ -54,21 +58,17 @@ export class AdminAddComponent implements OnInit {
   get repassword() {
     return this.addAdminForm.get('repassword');
   }
-  changeCountry(e: any) {
-    this.country?.setValue(e.target.value, {
-      onlySelf: true,
-    });
-  }
+ 
 
   ngOnInit(): void {}
   addAdmin() {
     let data = this.addAdminForm.value;
 
-    let admin = new Admin(data.email, data.password, data.firstName, data.lastName, "SECONDARY",data.country);
+    let admin = new Admin(data.email, data.password, data.firstName, data.lastName, "SECONDARY", data.address, data.phone, "available");
 
     this._adminService.addAdmin(admin).subscribe({
       next: (_result) => {
-        this._toastr.success("Le producteur a été ajouté avec succès");
+        this._toastr.success("Un administrateur a été ajouté avec succès");
         this._router.navigate(['/admins']);
       },
       error: (err) => {

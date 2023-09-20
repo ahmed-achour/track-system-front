@@ -26,6 +26,7 @@ export class UserUpdateComponent implements OnInit {
   ) {
     let formControls = {
       fullName: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required, Validators.pattern('^((?!(0))[0-9]*)$')],),
       password: new FormControl(''),
       repassword: new FormControl(''),
@@ -42,6 +43,9 @@ export class UserUpdateComponent implements OnInit {
   get password() {
     return this.updateUserForm.get('password');
   }
+  get address() {
+    return this.updateUserForm.get('address');
+  }
 
   get repassword() {
     return this.updateUserForm.get('repassword');
@@ -55,6 +59,7 @@ export class UserUpdateComponent implements OnInit {
         this.updateUserForm.patchValue({
           phone: res.user.phone,
           fullName: res.user.fullName,
+          address: res.user.address
         });
       },
       error: (error) => {
@@ -67,11 +72,11 @@ export class UserUpdateComponent implements OnInit {
     let id = this._route.snapshot.params['id'];
     let data = this.updateUserForm.value;
 
-    let user = new User(data.phone, data.password, data.fullName);
+    let user = new User(data.phone, data.password, data.fullName, data.address);
 
     this._userService.updateUser(id, user).subscribe({
       next: (_result) => {
-        this._toastr.success("Le producteur a été modifié avec succès");
+        this._toastr.success("L'utilisateur a été modifié avec succès");
         this._router.navigate(['/users']);
       },
       error: (err) => {

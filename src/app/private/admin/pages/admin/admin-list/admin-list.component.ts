@@ -17,10 +17,27 @@ adminList: any[] = [];
   ) {}
 
   ngOnInit(): void {
+    this.getAdminList()
+  }
+  getAdminList(){
     this._adminService.allAdmins().subscribe({
       next: (res) => {
         this.adminList = res.admins ?? [];
        
+      },
+    });
+  }
+  updateAdminStatus(id: string) {
+    let data = this.adminList.find((user: any) => user._id === id);
+    let state = {};
+    if (data.state == 'available') state = { state: 'unavailable' };
+    else state = { state: 'available' };
+    this._adminService.updateAdmin(id, state).subscribe({
+      next: (res) => {
+        this.getAdminList();
+      },
+      error: (err) => {
+        this._toastr.error(err.error.message);
       },
     });
   }
